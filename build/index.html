@@ -12,7 +12,8 @@
 <body>
   <h1>Welcome to My Simple Node App</h1>
   <p>This is a static HTML file served by Express.</p>
-  
+  <p>{{ process.env.NODE_ENV }}</p>
+
   <button id="fetchApi">Call API</button>
   
   <div class="api-response" id="apiResponse">
