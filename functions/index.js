@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const functions = require('firebase-functions');
+
 const express = require('express');
 const path = require('path');
 
@@ -9,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Routes
 app.get('/node-env', (req, res) => {
@@ -30,3 +32,5 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+exports.app = functions.https.onRequest(app);
