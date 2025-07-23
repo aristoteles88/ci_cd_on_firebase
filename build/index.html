@@ -12,13 +12,32 @@
 <body>
   <h1>Welcome to My Simple Node App</h1>
   <p>This is a static HTML file served by Express.</p>
-  <p>{{ process.env.NODE_ENV }}</p>
 
-  <button id="fetchApi">Call API</button>
+  <button id="fetchNodeEnv">Get Node Environment</button>
+
+  <div class="api-response" id="nodeEnv">
+    Node environment will appear here
+  </div>
   
+  <button id="fetchApi">Call API</button>
+
   <div class="api-response" id="apiResponse">
     API response will appear here
   </div>
+
+  <script>
+    document.getElementById('fetchNodeEnv').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/node-env');
+        const data = await response.json();
+        document.getElementById('nodeEnv').innerHTML = 
+          `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        document.getElementById('nodeEnv').innerHTML = 
+          `Error: ${error.message}`;
+      }
+    });
+  </script>
 
   <script>
     document.getElementById('fetchApi').addEventListener('click', async () => {

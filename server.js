@@ -12,6 +12,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Routes
+app.get('/node-env', (req, res) => {
+  res.json({
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 app.get('/api', (req, res) => {
   res.json({
     message: 'Hello from the API!',
